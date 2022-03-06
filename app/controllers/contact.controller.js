@@ -40,25 +40,25 @@ exports.findALL= async(req, res, next) => {
     } return res.send(document);
 };
 
-//exports.ƒindOne = async(req, res, next) => {
-  // const { id } = req.params;
-    //const condition = {_id: id && mongoose.isValidObjectId(id) ? id : nuLL,
+exports.ƒindOne = async(req, res, next) => {
+  const { id } = req.params;
+    const condition = {_id: id && mongoose.isValidObjectId(id) ? id : nuLL,
         
-    //};
-    //const[error,document]=await handLePromise(Contact.findOne(condition));
-    //if(error) {
-      //  return next(new BadRequestError( 500,
-        //        `Error retrieving contact with id = ${req.params.id}`
-         //   ));}
-        //if (!document) {
-          //return next(new BadRequestError(404, "Contact not found"));
+    };
+    const[error,document]=await handLePromise(Contact.findOne(condition));
+    if(error) {
+       return next(new BadRequestError( 500,
+                `Error retrieving contact with id = ${req.params.id}`
+           ));}
+        if (!document) {
+          return next(new BadRequestError(404, "Contact not found"));
 
         
        
     
         
-  // }return res.send(document);
-//};
+  }return res.send(document);
+};
 exports.update = async(req, res, next) => {
     if (Object.keys(req.body).length === 0) {
         return next(new BadRequestError(400,
